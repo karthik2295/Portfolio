@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R Karthik Kiran | Mechanical Engineer</title>
+<meta name="description" content="Portfolio of R Karthik Kiran, mechanical engineering student: go-karts, aeromodelling, VTOL drones and a tourbillon clock.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bp:#0D2B4B;
+  --bp-deep:#09203A;
+  --grid:rgba(160,205,245,.10);
+  --grid-major:rgba(160,205,245,.18);
+  --line:rgba(160,205,245,.38);
+  --ink:#EAF3FC;
+  --ink-dim:#A9C3DC;
+  --amber:#FFB52E;
+  --cyan:#7FD1F5;
+  --display:'Big Shoulders Display','Arial Narrow','Helvetica Neue',sans-serif;
+  --body:'Schibsted Grotesk','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  background-color:var(--bp);
+  background-image:
+    linear-gradient(var(--grid-major) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--cyan);text-underline-offset:3px}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:rgba(9,32,58,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.bar .id{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.bar nav{display:flex;gap:22px}
+.bar nav a{color:var(--ink-dim);text-decoration:none;font-size:15px}
+.bar nav a:hover{color:var(--amber)}
+
+/* sections */
+section{padding:84px 0}
+.sh{display:flex;align-items:center;gap:18px;margin-bottom:40px}
+.sh h2{font-family:var(--display);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1;letter-spacing:.01em}
+.sh::after{content:"";flex:1;height:9px;
+  background:
+    linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat,
+    linear-gradient(var(--line),var(--line)) left/1px 100% no-repeat,
+    linear-gradient(var(--line),var(--line)) right/1px 100% no-repeat}
+.lead{max-width:62ch;color:var(--ink)}
+.dim{color:var(--ink-dim)}
+
+/* hero */
+.hero{padding:56px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{white-space:nowrap;font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,132px);line-height:.88;letter-spacing:.005em}
+.hero .role{margin-top:22px;font-size:20px;max-width:34ch;color:var(--ink)}
+.hero .cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;border:1px solid var(--amber);color:var(--amber);text-decoration:none;font-weight:600;font-size:16px;background:transparent;cursor:pointer;font-family:var(--body)}
+.btn:hover{background:var(--amber);color:var(--bp-deep)}
+.btn.solid{background:var(--amber);color:var(--bp-deep)}
+.btn.solid:hover{background:transparent;color:var(--amber)}
+.tb{margin-top:40px;border:1px solid var(--line);background:rgba(9,32,58,.7);display:grid;grid-template-columns:1fr 1fr;max-width:540px}
+.tb div{padding:10px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tb div:nth-child(2n){border-right:0}
+.tb div:nth-last-child(-n+2){border-bottom:0}
+.tb dt{font-size:13px;color:var(--ink-dim)}
+.tb dd{font-weight:500;font-size:16px;line-height:1.35}
+.tourbillon{width:100%;max-width:520px;justify-self:center;aspect-ratio:1}
+.tourbillon svg{width:100%;height:100%;display:block;overflow:visible}
+.cage{transform-origin:200px 200px;animation:spin 60s linear infinite}
+.escape{animation:spinr 8s linear infinite}
+.balance{transform-origin:200px 200px;animation:swing 1.6s ease-in-out infinite alternate}
+.fourth{transform-origin:318px 318px;animation:spinr 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinr{to{transform:rotate(-360deg)}}
+@keyframes swing{from{transform:rotate(-110deg)}to{transform:rotate(110deg)}}
+
+/* experience */
+.tl{border-left:1px solid var(--line);margin-left:6px}
+.job{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:0 0 44px 28px;position:relative}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-6px;top:8px;width:11px;height:11px;background:var(--bp);border:2px solid var(--amber);transform:rotate(45deg)}
+.job .when{color:var(--ink-dim);font-size:15px;padding-top:2px}
+.job h3{font-family:var(--display);font-weight:800;font-size:30px;line-height:1.1}
+.job .org{color:var(--cyan);font-weight:500;margin-bottom:10px}
+.job ul{padding-left:20px;max-width:64ch}
+.job li{margin-bottom:6px}
+.note{margin-top:12px;border:1px dashed var(--line);padding:10px 14px;max-width:64ch;font-size:15px;color:var(--ink-dim)}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.proj{border:1px solid var(--line);background:rgba(9,32,58,.78);display:flex;flex-direction:column;position:relative}
+.proj.feature{grid-column:1/-1;flex-direction:row}
+.proj.feature .ph{flex:0 0 46%;aspect-ratio:auto;min-height:340px}
+.ph{position:relative;aspect-ratio:16/10;border-bottom:1px solid var(--line);
+  background:repeating-linear-gradient(135deg,rgba(160,205,245,.07) 0 10px,transparent 10px 20px);
+  display:grid;place-items:center;color:var(--ink-dim);font-size:14px;text-align:center;padding:12px;overflow:hidden}
+.proj.feature .ph{border-bottom:0;border-right:1px solid var(--line)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph.wip{align-content:center;gap:6px;color:var(--ink)}
+.ph.wip strong{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1;color:var(--amber)}
+.ph.wip span{color:var(--ink-dim);font-size:16px}
+.ph.duo{display:grid;grid-template-columns:1fr 1fr;gap:1px;padding:0;background:var(--line)}
+.ph.duo img{position:static;display:block;width:100%;height:100%;object-fit:cover}
+.proj.feature .ph.duo img{min-height:340px}
+.ph.slides{background:#f1f5f9;padding:0}
+.ph.slides img{object-fit:contain;opacity:0;transition:opacity .25s}
+.ph.slides img.on{opacity:1}
+.sw{position:absolute;left:10px;bottom:10px;display:flex;gap:6px;z-index:2}
+.sw button{font-family:var(--body);font-size:13px;padding:4px 10px;background:var(--bp-deep);color:var(--ink);border:1px solid var(--line);cursor:pointer}
+.sw button[aria-pressed="true"]{background:var(--amber);color:var(--bp-deep);border-color:var(--amber)}
+.proj .body{padding:22px 24px 26px}
+.proj .meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;font-size:14px;color:var(--ink-dim)}
+.tag{border:1px solid var(--line);padding:1px 9px;font-size:13px;color:var(--ink)}
+.tag.live{border-color:var(--amber);color:var(--amber)}
+.proj h3{font-family:var(--display);font-weight:800;font-size:32px;line-height:1.05;margin-bottom:10px}
+.proj p{max-width:60ch;margin-bottom:10px}
+.specs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.specs span{background:rgba(127,209,245,.1);border:1px solid rgba(127,209,245,.3);padding:2px 10px;font-size:14px}
+
+/* skills etc */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.box{border:1px solid var(--line);padding:22px 24px;background:rgba(9,32,58,.78)}
+.box h3{font-family:var(--display);font-weight:800;font-size:26px;margin-bottom:12px}
+.box ul{list-style:none}
+.box li{padding:7px 0;border-bottom:1px solid rgba(160,205,245,.16);display:flex;justify-content:space-between;gap:12px}
+.box li:last-child{border-bottom:0}
+.box li em{font-style:normal;color:var(--ink-dim);font-size:15px;text-align:right}
+.dots{display:inline-flex;gap:4px;align-items:center}
+.dots i{width:9px;height:9px;border:1px solid var(--amber);display:block;transform:rotate(45deg)}
+.dots i.on{background:var(--amber)}
+.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.cert h3{font-size:28px}
+.cert .score{font-family:var(--display);font-weight:800;font-size:44px;color:var(--amber);line-height:1}
+.edu{margin-top:28px}
+
+/* document viewer */
+dialog#viewer{border:1px solid var(--line);background:var(--bp-deep);color:var(--ink);padding:14px;max-width:min(94vw,1000px);max-height:94vh;margin:auto;overflow:auto}
+dialog#viewer::backdrop{background:rgba(5,15,28,.82)}
+#viewer-img{display:block;max-width:100%;height:auto;margin-top:12px;background:#fff}
+#viewer-close{display:block;margin-left:auto}
+a.view{cursor:zoom-in}
+
+/* contact + footer */
+.contact{text-align:left}
+.contact .big{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,72px);line-height:1;word-break:break-word}
+.contact .big a{color:var(--ink);text-decoration:none;border-bottom:3px solid var(--amber)}
+.contact .big a:hover{color:var(--amber)}
+.contact .row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.sheet{border:1px solid var(--line);background:var(--bp-deep);margin:0 auto;max-width:1112px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr}
+.sheet div{padding:10px 14px;border-right:1px solid var(--line);font-size:14px}
+.sheet div:last-child{border-right:0}
+.sheet b{display:block;font-size:12px;font-weight:500;color:var(--ink-dim)}
+footer{padding:0 24px 40px}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .tourbillon{max-width:380px;order:-1}
+  .projects,.certs,.cols{grid-template-columns:1fr}
+  .proj.feature{flex-direction:column}
+  .proj.feature .ph{flex:none;min-height:0;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
+  .ph.duo,.proj.feature .ph.duo{aspect-ratio:auto}
+  .ph.duo img,.proj.feature .ph.duo img{min-height:0;height:300px}
+  .job{grid-template-columns:1fr;gap:4px}
+  .sheet{grid-template-columns:1fr 1fr}
+  .sheet div:nth-child(2n){border-right:0}
+  .sheet div{border-bottom:1px solid var(--line)}
+  .bar nav a:not(.keep){display:none}
+}
+@media (max-width:520px){
+  .tb{grid-template-columns:1fr}
+  .tb div{border-right:0!important;border-bottom:1px solid var(--line)!important}
+  .tb div:last-child{border-bottom:0!important}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="id" href="#top">R Karthik Kiran</a>
+    <nav aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#about">About</a>
+      <a class="keep" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>R Karthik<br>Kiran</h1>
+      <p class="role">Mechanical engineering student who designs, builds and captains things that move: go-karts, aircraft and a tourbillon clock.</p>
+      <div class="cta">
+        <a class="btn solid" href="#projects">See projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <dl class="tb">
+        <div><dt>Studying</dt><dd>B.E. Mechanical Engineering, SJB Institute of Technology</dd></div>
+        <div><dt>Graduating</dt><dd>July 2027</dd></div>
+        <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
+        <div><dt>Right now</dt><dd>Captain, FKDC Season 10 EV kart</dd></div>
+      </dl>
+    </div>
+
+    <div class="tourbillon" role="img" aria-label="Animated drawing of a tourbillon: a rotating cage holding a swinging balance wheel and an escape wheel">
+      <svg id="tb-svg" viewBox="0 0 400 400" fill="none" stroke="#A0CDF5" stroke-width="1.2">
+        <g id="ticks" opacity=".6"></g>
+        <circle cx="200" cy="200" r="186" stroke-opacity=".5"/>
+        <circle cx="200" cy="200" r="150" stroke-opacity=".35" stroke-dasharray="2 6"/>
+        <g class="fourth"><g id="gear-fourth" stroke="#7FD1F5"></g></g>
+        <g class="cage">
+          <circle cx="200" cy="200" r="124" stroke="#FFB52E" stroke-width="2"/>
+          <circle cx="200" cy="200" r="112" stroke-opacity=".5"/>
+          <path d="M200 76V324M76 200H324" stroke="#FFB52E" stroke-opacity=".7"/>
+          <g class="escape" style="transform-origin:200px 128px"><g id="gear-escape" stroke="#7FD1F5"></g></g>
+          <g class="balance"><path id="hairspring" stroke="#FFB52E" stroke-width="1.4"/><circle cx="200" cy="200" r="56" stroke="#EAF3FC" stroke-width="2.2"/><path d="M144 200H256M200 144V256" stroke="#EAF3FC" stroke-opacity=".7"/></g>
+          <circle cx="200" cy="200" r="5" fill="#FFB52E" stroke="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sh"><h2>Experience</h2></div>
+    <div class="tl">
+
+      <article class="job">
+        <div class="when">April 2025 to present</div>
+        <div>
+          <h3>Product Development Intern</h3>
+          <div class="org">Zoyov, Bengaluru</div>
+          <ul>
+            <li>Leading a horology project to improve the design of a tourbillon table clock.</li>
+            <li>Building and 3D printing physical prototypes, finding mechanical limits and testing new designs until the clock runs smoothly.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="when">September to November 2025</div>
+        <div>
+          <h3>Project Assistant Intern</h3>
+          <div class="org">Naidu Labs, Bengaluru</div>
+          <ul>
+            <li>Applied Design for Additive Manufacturing (DfAM) to create and improve working 3D-printed parts.</li>
+            <li>Ran daily lab operations and kept four printers in good shape: two FDM (Bambu Lab A1, Elegoo Neptune 4 Max) and two resin (Anycubic Mono 4, Elegoo Saturn S).</li>
+            <li>Troubleshot and calibrated the Neptune 4 Max, and serviced and repaired the Saturn S.</li>
+          </ul>
+          <p class="note">One project here is under NDA: <strong>Spiritual Torus</strong>. Details are withheld.</p>
+          <p style="margin-top:12px"><a class="view" href="assets/certs/naidu-labs-internship.jpg">View internship certificate</a></p>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="when">August to September 2024</div>
+        <div>
+          <h3>Mechanical Engineering Intern</h3>
+          <div class="org">Rail Wheel Factory, Bengaluru</div>
+          <ul>
+            <li>Observed steel casting in an Electric Arc Furnace and metal forging for railway axles.</li>
+            <li>Documented how wheels and axles are assembled with hydraulic presses, with a focus on quality control and safety.</li>
+          </ul>
+          <p style="margin-top:12px"><a class="view" href="assets/certs/rwf-internship.jpg">View internship certificate</a></p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sh"><h2>Projects and competitions</h2></div>
+    <div class="projects">
+
+      <article class="proj feature">
+        <figure class="ph wip"><strong>Build in progress</strong></figure>
+        <div class="body">
+          <div class="meta"><span class="tag live">In progress</span><span>Competition Oct to Nov 2026</span></div>
+          <h3>FMAE Formula Kart Design Challenge, Season 10 (EV)</h3>
+          <p>Team captain for a new electric kart. I guide the team, assign and supervise work, and focus on the powertrain and the design: the mechanical chassis, motor mounts and a 72V wiring diagram.</p>
+          <div class="specs"><span>Captain</span><span>Powertrain</span><span>Chassis</span><span>Motor mounts</span><span>72V wiring</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <figure class="ph"><img src="assets/photos/fkdc-s9.jpg" alt="The FKDC Season 9 team posing with their kart on the race track between FMAE flags" style="object-position:50% 62%"></figure>
+        <div class="body">
+          <div class="meta"><span class="tag live">AIR 15</span><span class="tag">IC category</span><span>10 to 15 Oct 2025, Coimbatore</span></div>
+          <h3>FKDC Season 9</h3>
+          <p>Design Head and CAD lead. I designed the major components: the chassis, the Ackermann steering, and the front and rear structural members (bumpers). I also helped build the physical kart.</p>
+          <div class="specs"><span>Design Head</span><span>Chassis</span><span>Ackermann steering</span><span>Bumpers</span></div>
+          <p style="margin:14px 0 0"><a class="view" href="assets/certs/fkdc-s9-participation.jpg">View participation certificate</a></p>
+        </div>
+      </article>
+
+      <article class="proj">
+        <figure class="ph"><img src="assets/photos/boeing-nac.jpg" alt="The four-member team holding their aircraft on the IIT Madras campus at night" style="object-position:50% 30%"></figure>
+        <div class="body">
+          <div class="meta"><span class="tag">IIT Madras</span><span>January 2026</span></div>
+          <h3>Boeing National Aeromodelling Competition</h3>
+          <p>Captain of a 4-member team and Design Lead. I managed finances, led the aerodynamic design and CAD, guided fabrication and handled material procurement.</p>
+          <div class="specs"><span>Team lead</span><span>Aerodynamics</span><span>CAD</span><span>Budget</span><span>Procurement</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <figure class="ph duo">
+          <img src="assets/photos/nac-iitb-1.jpg" alt="Karthik holding the team's balsa and film aircraft in the department lab" style="object-position:50% 62%">
+          <img src="assets/photos/nac-iitb-2.jpg" alt="Karthik at the competition field with the aircraft and radio transmitter" style="object-position:50% 40%">
+        </figure>
+        <div class="body">
+          <div class="meta"><span class="tag">IIT Bombay</span><span>December 2024</span></div>
+          <h3>National Aeromodelling Competition</h3>
+          <p>Captain of a 4-member team. I managed finances and the design, guided fabrication and material procurement, and helped with building, assembly and flight testing.</p>
+          <div class="specs"><span>Team lead</span><span>Fabrication</span><span>Flight testing</span><span>Budget</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <figure class="ph slides">
+          <img class="on" src="assets/photos/vtol-iso.png" alt="CAD isometric view of the 3-rotor VTOL: fuselage, rib-built wings, tail boom, three motors and a tail fin">
+          <img src="assets/photos/vtol-top.png" alt="CAD top view of the 3-rotor VTOL showing the wing ribs, motor mounts and tail boom">
+          <div class="sw" role="group" aria-label="CAD view">
+            <button type="button" aria-pressed="true">Isometric view</button>
+            <button type="button" aria-pressed="false">Top view</button>
+          </div>
+        </figure>
+        <div class="body">
+          <div class="meta"><span class="tag live">In fabrication</span><span>2026</span></div>
+          <h3>3-Rotor VTOL Aircraft</h3>
+          <p>A custom 3-rotor tilt-rotor VTOL drone, designed with a team. I modelled it and animated the tilt mechanism in Fusion 360, working out the wingspan, chord length and avionics placement.</p>
+          <div class="specs"><span>1.2 m wingspan</span><span>1.2 m tail boom</span><span>920 kV motors</span><span>10 inch props</span><span>Pixhawk controller</span><span>Fusion 360</span></div>
+        </div>
+      </article>
+
+      <article class="proj feature">
+        <figure class="ph duo">
+          <img src="assets/photos/tourbillon-1.png" alt="CAD render of the tourbillon table clock, front three-quarter view, with gear train on a curved stand">
+          <img src="assets/photos/tourbillon-2.png" alt="CAD render of the tourbillon table clock from the other side">
+        </figure>
+        <div class="body">
+          <div class="meta"><span class="tag live">Ongoing</span><span>Zoyov, since April 2025</span></div>
+          <h3>Tourbillon table clock</h3>
+          <p>I started with a ready-made tourbillon table clock, studied its flaws and problems, and decided to design and build our own version. Every iteration is 3D printed and tested.</p>
+          <div class="specs"><span>Horology</span><span>Prototyping</span><span>3D printing</span><span>Redesign</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sh"><h2>Skills and languages</h2></div>
+    <div class="cols">
+
+      <div class="box">
+        <h3>CAD software</h3>
+        <ul>
+          <li>Fusion 360 <em>Advanced</em></li>
+          <li>Solid Edge <em>Intermediate</em></li>
+          <li>CATIA <em></em></li>
+          <li>Creo <em></em></li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Engineering</h3>
+        <ul>
+          <li>Aeromodelling</li>
+          <li>EV architecture</li>
+          <li>Chassis design</li>
+          <li>Rapid prototyping</li>
+          <li>DFMA</li>
+          <li>Heavy industry manufacturing</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Programming</h3>
+        <ul>
+          <li>Python <em>Beginner</em></li>
+          <li>Java <em>Beginner</em></li>
+          <li>C <em>Theory</em></li>
+          <li>HTML and CSS <em>Theory</em></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="box" style="margin-top:28px">
+      <h3>Languages</h3>
+      <ul>
+        <li>Kannada <span class="dots" aria-label="Native"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Native</em></li>
+        <li>English <span class="dots" aria-label="Fluent"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Fluent</em></li>
+        <li>Hindi <span class="dots" aria-label="Fluent"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Fluent</em></li>
+        <li>Telugu <span class="dots" aria-label="Conversational"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Conversational</em></li>
+        <li>Japanese <span class="dots" aria-label="Basic"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><em>Basic</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="sh"><h2>Certificates and workshops</h2></div>
+    <div class="certs">
+
+      <div class="box cert">
+        <h3>Elite certification: Product Design and Manufacturing</h3>
+        <p class="dim">NPTEL, IIT Kanpur. January to April 2026.</p>
+        <p class="score">73%</p>
+        <p style="margin-top:12px"><a class="view" href="assets/certs/nptel-product-design-and-manufacturing.jpg">View certificate</a></p>
+      </div>
+
+      <div class="box cert">
+        <h3>Elite certification: Rapid Manufacturing</h3>
+        <p class="dim">NPTEL, IIT Kanpur. July to October 2025.</p>
+        <p class="score">68%</p>
+        <p style="margin-top:12px"><a class="view" href="assets/certs/nptel-rapid-manufacturing.jpg">View certificate</a></p>
+      </div>
+
+      <div class="box cert">
+        <h3>Prototype and Process Design and Development</h3>
+        <p class="dim">Workshop, 16 to 18 May 2024. SJB Institute of Technology Institution's Innovation Council, with EMI Product.</p>
+        <p style="margin-top:12px"><a class="view" href="assets/certs/workshop-prototype-process-design.jpg">View certificate</a></p>
+      </div>
+
+      <div class="box cert">
+        <h3>Prototype Design and Additive Manufacturing</h3>
+        <p class="dim">Workshop with an industry visit to Wipro 3D. Covered CAD for 3D printing, STL files, materials and FDM printing.</p>
+        <p style="margin-top:12px"><a class="view" href="assets/certs/workshop-additive-manufacturing-syllabus.jpg">View workshop syllabus</a></p>
+      </div>
+
+      <div class="box cert">
+        <h3>Artificial Intelligence and Its Engineering Applications</h3>
+        <p class="dim">Three-day workshop, 27 to 29 March 2025. Department of Mechanical Engineering, SJBIT, with IIPE and ISTE.</p>
+        <p style="margin-top:12px"><a class="view" href="assets/certs/workshop-ai-engineering-applications.jpg">View certificate</a></p>
+      </div>
+
+    </div>
+
+    <div class="box edu">
+      <h3>Education</h3>
+      <p><strong>S J B Institute of Technology</strong>, Bengaluru. Bachelor of Engineering in Mechanical Engineering, expected July 2027. CGPA 6.93.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sh"><h2>About</h2></div>
+    <div class="cols" style="grid-template-columns:1.4fr 1fr">
+      <div>
+        <p class="lead">I'm a mechanical engineering student with hands-on experience in aeromodelling, rapid prototyping and heavy manufacturing. I've led design and fabrication teams for national-level aeromodelling and go-kart competitions, and I like turning complex ideas into working, high-performance prototypes using CAD, 3D printing and plain hardware troubleshooting.</p>
+        <h3 style="font-family:var(--display);font-weight:800;font-size:26px;margin:28px 0 8px">Hobbies</h3>
+        <p class="lead">Bike and car maintenance and diagnostics, repairing household electromechanical items, and a steady stream of learning about horology and 3D printing.</p>
+      </div>
+      <figure class="ph" style="aspect-ratio:4/5;border:1px solid var(--line)"><img src="assets/photos/karthik.jpg" alt="Portrait of R Karthik Kiran" style="object-position:50% 35%"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sh"><h2>Contact</h2></div>
+    <p class="lead dim" style="margin-bottom:18px">Open to internships, project work and team collaborations.</p>
+    <p class="big"><a href="mailto:karthik.kiran@zohomail.in">karthik.kiran@zohomail.in</a></p>
+    <div class="row">
+      <a class="btn solid" href="mailto:karthik.kiran@zohomail.in">Send an email</a>
+      <a class="btn" href="assets/R-Karthik-Kiran-Resume.pdf" download="R-Karthik-Kiran-Resume.pdf">Download resume (PDF)</a>
+      <a class="btn" href="https://www.linkedin.com/in/r-karthik-kiran-264024293/" target="_blank" rel="noopener">LinkedIn profile</a>
+      <button class="btn" id="copy" type="button">Copy email address</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<dialog id="viewer" aria-label="Document viewer">
+  <button type="button" id="viewer-close" class="btn">Close</button>
+  <img id="viewer-img" alt="">
+</dialog>
+
+<footer>
+  <div class="sheet" aria-label="Drawing title block">
+    <div><b>Drawn by</b>R Karthik Kiran</div>
+    <div><b>Institution</b>SJB Institute of Technology</div>
+    <div><b>Location</b>Bengaluru, India</div>
+    <div><b>Revision</b><span id="rev"></span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function gear(cx,cy,r,teeth,depth){
+    var d='',step=2*Math.PI/teeth,rin=r-depth;
+    for(var i=0;i<teeth;i++){
+      var a=i*step,pts=[[rin,a],[r,a+step*.18],[r,a+step*.42],[rin,a+step*.6]];
+      pts.forEach(function(p,k){
+        d+=(i===0&&k===0?'M':'L')+(cx+p[0]*Math.cos(p[1])).toFixed(2)+' '+(cy+p[0]*Math.sin(p[1])).toFixed(2)+' ';
+      });
+    }
+    return d+'Z';
+  }
+  function add(id,d){
+    var p=document.createElementNS(NS,'path');p.setAttribute('d',d);
+    document.getElementById(id).appendChild(p);
+  }
+  add('gear-escape',gear(200,128,24,15,6));
+  add('gear-fourth',gear(318,318,46,30,7));
+  var c=document.createElementNS(NS,'circle');
+  c.setAttribute('cx',318);c.setAttribute('cy',318);c.setAttribute('r',12);
+  document.getElementById('gear-fourth').appendChild(c);
+  var e=document.createElementNS(NS,'circle');
+  e.setAttribute('cx',200);e.setAttribute('cy',128);e.setAttribute('r',8);
+  document.getElementById('gear-escape').appendChild(e);
+
+  var sp='';
+  for(var t=0;t<=Math.PI*2*5;t+=.15){
+    var r=6+t*(46/(Math.PI*2*5));
+    sp+=(t===0?'M':'L')+(200+r*Math.cos(t)).toFixed(2)+' '+(200+r*Math.sin(t)).toFixed(2)+' ';
+  }
+  document.getElementById('hairspring').setAttribute('d',sp);
+
+  var tk='';
+  for(var i=0;i<60;i++){
+    var a=i*Math.PI/30,long=i%5===0,r1=186,r2=long?172:178;
+    tk+='M'+(200+r1*Math.cos(a)).toFixed(1)+' '+(200+r1*Math.sin(a)).toFixed(1)+'L'+(200+r2*Math.cos(a)).toFixed(1)+' '+(200+r2*Math.sin(a)).toFixed(1);
+  }
+  var tp=document.createElementNS(NS,'path');tp.setAttribute('d',tk);
+  document.getElementById('ticks').appendChild(tp);
+
+  document.getElementById('rev').textContent=new Date().toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+
+  document.querySelectorAll('.slides').forEach(function(fig){
+    var imgs=fig.querySelectorAll('img'),btns=fig.querySelectorAll('.sw button');
+    btns.forEach(function(b,i){
+      b.addEventListener('click',function(){
+        imgs.forEach(function(m,k){m.classList.toggle('on',k===i)});
+        btns.forEach(function(x,k){x.setAttribute('aria-pressed',k===i?'true':'false')});
+      });
+    });
+  });
+
+  var dlg=document.getElementById('viewer'),vimg=document.getElementById('viewer-img');
+  document.querySelectorAll('a.view').forEach(function(a){
+    a.addEventListener('click',function(ev){
+      if(!dlg||!dlg.showModal)return;
+      ev.preventDefault();
+      vimg.src=a.getAttribute('href');
+      vimg.alt=a.parentNode.parentNode.querySelector('h3').textContent;
+      dlg.showModal();
+    });
+  });
+  document.getElementById('viewer-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(ev){if(ev.target===dlg)dlg.close()});
+
+  var btn=document.getElementById('copy');
+  btn.addEventListener('click',function(){
+    var m='karthik.kiran@zohomail.in';
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email address'},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(m).then(done,function(){})}
+    else{var t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(x){}document.body.removeChild(t)}
+  });
+})();
+</script>
+</body>
+</html>
